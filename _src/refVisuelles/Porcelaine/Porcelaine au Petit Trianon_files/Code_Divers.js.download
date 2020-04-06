@@ -1,0 +1,141 @@
+// JavaScript Document pour la gestion des sous-menus du Patrimoine
+
+function SupprimeLignes_tabVilles() {
+// Supprime les lignes de tabVilles dans le bandeau : par défaut, il doit contenir 3 lignes : ce sont les lignes 1 et 2 ("Cliquez sur une région")
+// et la dernière ligne.
+
+  var tabville = document.getElementById('tabVilles'); 
+  var nblignes = tabville.rows.length; //Nb de lignes
+
+  if (nblignes>3)  { 
+	for (var i = 1 ; i <= nblignes-3 ; i++) {      // si 10 lignes, on le fait 7 fois
+	    tabville.deleteRow(2); 	}}} //la ligne 2 est toujours la ligne détruite
+
+function SupprimeLignes_tabSM() {
+// Supprime les lignes de tabSM dans calSM : par défaut, il doit contenir 1 ligne
+
+  var tabSM = document.getElementById('tabSM'); 
+  var nblignes = tabSM.rows.length;    //Nb de lignes
+
+  if (nblignes > 1)  { 
+	for (var i = 1 ; i <= nblignes-1 ; i++) {    // si 10 lignes, on le fait 9 fois
+	    tabSM.deleteRow(1); }}}  //la ligne 1 est toujours la ligne détruite
+
+function smGestion(ligne, ville) {
+  if (villeCHG!=ville) {
+	if (villeCHG!='') {window.document.getElementById('m'+villeCHG).className="BandeauBleu";}
+/* on récupère le bandeau bleu initial sur toutes les villes, hormis celle où est la souris
+	var lignes=document.getElementById('tabVilles').getElementsByTagName('tr');
+	var i=0;
+	while(lignes[i]) 
+	    {var nom=trs[i].id.name;
+		document.write (nom);
+        window.document.getElementById('TabVilles').className="BandeauBleu";
+    		i++;   } */
+
+	window.document.getElementById("m"+ville).className="BandeauBleu-Over";
+	setvisible('calSM');
+// On a changé le 318 en 434 (compte tenu de l'image de FranceRegion
+	if (Navig=='FF') //Firefox
+		{document.getElementById('calSM').style.top = 435+18*ligne;}
+	else
+		{document.getElementById('calSM').style.top = 430+18*ligne;}
+	AfficherLignes(ville);
+villeCHG=ville;  } }
+
+function Recup_BandeauBleu(ville) {
+	window.document.getElementById("m"+ville).className="BandeauBleu";}
+
+function Recup_BandeauBleu_Over(ville) {
+//	window.alert(ville);
+	window.document.getElementById("m"+ville).className="BandeauBleu-Over";}
+
+function MasquerColonne_tabSM(){
+	var i = 0;
+	var rows = document.getElementById('tabSM').rows;
+	while(rows[i])   {
+		var style = rows[i].cells[0].style;
+		style.display = "none";
+		i++;   }
+	var tab = document.getElementById('tabSM');
+	tab.style.width="250"}
+
+function MasquerColonne(){
+	//===============Pourra être supprimé===================
+	var i = 0;
+	var rows = document.getElementById('tabSM').rows;
+	while(rows[i])   {
+		var style = rows[i].cells[0].style;
+		style.display = "none";
+		i++;   }
+	var tab = document.getElementById('tabSM');
+	tab.style.width="250"}
+
+function AfficherLignes(town) {
+var lignes=document.getElementById('tabSM').getElementsByTagName('tr');
+
+// Quand on démarre, toutes les lignes sont masquées.
+// On cherche la ville. Quand elle est trouvée en colonne 0, on affiche les lignes où elle se trouve sans sortir quand la ville change.
+var i=0;
+while(lignes[i])
+  {	var cells=lignes[i].getElementsByTagName('td');
+	if (cells[0].innerHTML==town)
+	   {lignes[i].style.display = ''; }
+	else {	lignes[i].style.display = 'none'; }
+	i++;  }}
+
+function MasquerTout() {
+var lignes=document.getElementById('tabSM').getElementsByTagName('tr');
+var i=1;
+while(lignes[i])
+	{
+	var cells=lignes[i].getElementsByTagName('td');
+	lignes[i].style.display = 'none';
+	i++;}}
+
+function cache() {
+	window.document.getElementById('m'+villeCHG).className="BandeauBleu";
+	villeCHG='';
+	setinvisible('calSM');}
+
+function setvisible(object) {
+   if (document.getElementById)
+       var objectStyle=document.getElementById(object).style;
+       objectStyle.visibility = 'visible';
+       objectStyle.zIndex = 200;   }
+
+function setinvisible(object) {
+   if (document.getElementById)
+       document.getElementById(object).style.visibility = 'hidden';  }
+
+function preload() {
+	if (document.images) {
+		tabImages=new Array;
+		for (var i=0; i<preload.arguments.length; i++) {
+			tabImages[i]=new Image();
+			tabImages[i].src=preload.arguments[i];	}}}
+			
+function smGestion_AVANT(elm, ville) {
+  if (villeCHG!=ville) {
+	if (villeCHG!='') {window.document.getElementById('m'+villeCHG).className="BandeauBleu";}
+// on récupère le bandeau bleu initial sur toutes les villes, hormis celle où est la souris
+
+//	var lignes=document.getElementById('TabVilles').getElementsByTagName('tr');
+//	var i=0;
+//	while(lignes[i]) 
+//	    {
+//		var nom=trs[i].id.name;
+//		document.write (nom);
+//        window.document.getElementById('TabVilles').className="BandeauBleu";
+//    		i++;
+//	     }
+	window.document.getElementById("m"+ville).className="BandeauBleu-Over";
+	setvisible('calSM');
+	var nPos = elm.rowIndex;
+
+	window.alert(nPos);
+
+// On a changé le 318 en 432 (compte tenu de l'image de FranceRegion
+	document.getElementById('calSM').style.top = 432+18*nPos;
+	AfficherLignes(ville);
+	villeCHG=ville;  } }

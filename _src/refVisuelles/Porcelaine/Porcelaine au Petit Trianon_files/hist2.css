@@ -1,0 +1,218 @@
+.ElementTab {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000099;
+	text-align: left;
+	text-decoration: none;}
+.ElementTab:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #000099;
+	text-align: left;
+	text-decoration: none;}
+.ElementTab:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #990000;
+	text-align: left;
+	text-decoration: none;}
+.ElementTabRIEN {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #0066CC;
+	text-align: left;
+	text-decoration: none;
+	cursor: default;}
+.TexteHistoire { 
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 11px; 
+	color: #330000;
+	text-align: justify;
+	border-color: #0000FF black black;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-right: 10px;; line-height: normale; letter-spacing: normal; word-spacing: normal}
+.TexteHistoire_e14 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #330000;
+	text-align: justify;
+	border-color: #0000FF black black;
+	margin-left: 10px;
+	margin-top: 5px;	
+	margin-right: 10px;; line-height: 14px; letter-spacing: normal; word-spacing: normal}
+.TexteHistoire_e14m {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #330000;
+	text-align: justify;
+	border-color: #0000FF black black;
+	margin-left: 8px;
+	margin-top: 5px;	
+	margin-right: 8px;; line-height: 14px; letter-spacing: normal; word-spacing: normal}
+.TexteHistoireLien { 
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 11px; 
+	color: #0000CC;
+	text-align: justify;
+	border-color: #0000FF black black;
+	margin-left: 0px;
+	margin-top: 5px;
+	margin-right: 0px;
+	text-decoration:none;}
+.TexteHistoireLien:hover {text-decoration:underline;}
+.GalerieVitraux {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #330000;
+	text-align: center;
+	text-decoration: none;
+	line-height: 15px; }
+.GalerieVitraux:hover {background-color: #000099;	color: #FFFFFF; }
+.GalerieVitraux9 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #330000;
+	text-align: center;
+	text-decoration: none;
+	line-height: 15px; }
+.GalerieVitraux9:hover {background-color: #000099;	color: #FFFFFF;}
+.GalerieVitrauxBlanc {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+	text-decoration: none;
+	line-height: 15px; }
+.GalerieVitrauxBlanc:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	background-color: #FFFFFF;
+	color: #000099;
+	text-align: center;
+	text-decoration: none;
+	line-height: 15px; }
+.GalerieVitrauxBlancFixe {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color=#660000;
+	text-align: center;
+	text-decoration: none;
+	line-height: 15px; }
+.TitrePageMaquette {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;}
+.SousTitrePageMaquette {
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 11px; 
+	color: #330000;
+	text-align: justify;
+	border-color: #0000FF black black;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-right: 10px;}
+.Livre_Auteur {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #333333;
+	text-align: left ;
+	margin-left: 5px;}
+.TexteHistoire9 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #330000;
+	text-align: justify;
+	border-color: #0000FF black black;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-right: 10px;}
+.TexteHistoireNew {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #330000;
+	text-align: justify;
+	border-color: #0000FF black black;
+	margin-left: 8px;
+	margin-top: 5px;
+	margin-right: 8px; }
+.TexteHistoire10 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #330000;
+	text-align: justify;
+	border-color: #0000FF black black;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-right: 10px;}
+.TexteHistoire12 {
+	 font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #330000;
+	text-align: justify;}
+.TitreChapitreMaquetteZZ {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bold;
+	color: #000066;
+	text-align: center;}
+.zzTitreChap12Gris {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	color: #333333;}
+.TexteHistoireCentre10 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-transform: none;
+	color: #330000;
+	text-align: center;}
+.TexteHistoireCentre11 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #330000;
+	text-align: center;}
+.Comic9pxGrisCBO_g {
+	font-family: "Comic Sans MS", Arial; 
+	font-size: 9px;
+	color: #666666;
+	background-color: #CCCCCC;
+	margin-bottom: 2px;
+	margin-left: 5px;
+	align:left;
+	text-decoration: none;}
+.Comic9pxGrisCBO {
+	font-family: "Comic Sans MS", Arial; 
+	font-size: 9px; 
+	color: #666666;
+	text-align: center;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	cursor: default;
+	text-decoration: none;}
+.Comic9pxGrisCBO:hover { color: #000000;	cursor: pointer;}
+.LegendeImageIndex {
+	font-family: "Comic Sans MS", Arial; 
+	font-size: 9px; 
+	line-height: normale;
+	color: #000099;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	text-decoration: none;	}
+.LegendeImageIndex:hover {	text-decoration: underline;}
