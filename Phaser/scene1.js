@@ -5,18 +5,17 @@ class Scene1 extends Phaser.Scene{
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> INIT
 init(){
     var cam = this.cameras.main; //camera
-    var joueur;
 }
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PRELOAD
 preload(){
-    this.load.image('square','../_assets/47x48.png');
+    this.load.image("square",'../_assets/47x48.png');
 }
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CREATE
 create(){
-    
-    joueur = new Entitee('square');
+
+    var joueur = new Entitee(this, 5, 5, 5, 5, 5, 5, "square", NaN, NaN, NaN, NaN);
     console.log(joueur);
 }
 

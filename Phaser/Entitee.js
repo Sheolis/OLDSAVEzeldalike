@@ -1,4 +1,4 @@
-/*class Entitee extends Phaser.GameObjects.Sprite{
+class Entitee extends Phaser.GameObjects.Sprite{
     constructor(scene, x, y, hp, mana, speed, poise, asset, animIdle, animMvt, animAction, animDeath){
         var _hp = hp;
         var _hpMax = hp;
@@ -13,15 +13,7 @@
         var _animDeath = animDeath;
 
         super(scene, x, y, _asset);
-    }
-}*/
 
-class Entitee extends Phaser.GameObjects.Sprite{
-    constructor(scene, x, y, asset){
-
-        var _asset = asset;
-        console.log(_asset);
-
-        super(scene, x, y, _asset);
+        console.log(this._hp);
     }
 }
