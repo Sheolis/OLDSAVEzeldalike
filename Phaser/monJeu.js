@@ -5,8 +5,7 @@ this.config = {
 physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
-            debug: false
+            debug: true
         }
     },
 scene:
@@ -14,7 +13,6 @@ scene:
 };
 
 this.game = new Phaser.Game(config);
-
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  INIT
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PRELOAD
