@@ -1,8 +1,8 @@
 class Entitee extends Phaser.Physics.Arcade.Sprite{
-    constructor(scene, x, y, hp, mana, speed, poise, asset/*, animIdle, animMvt, animAction, animDeath*/){
+    constructor(scene, x, y, pv, mana, speed, poise, asset/*, animIdle, animMvt, animAction, animDeath*/){
     //Private
-        var _hp = hp;
-        var _hpMax = hp;
+        var _pv = pv;
+        var _pvMax = pv;
         var _mana = mana;
         var _manaMax = mana;
         var _speed = speed;
@@ -17,19 +17,19 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
 
         super(scene, x, y, _asset);
 
-        //scene.add.existing(this);
+        scene.add.existing(this);
         scene.physics.world.enableBody(this);
     //Public
-        this.moveUp = function(dir){
+        this.moveUp = function(){
             this.body.velocity.y = - _speed;
         }
-        this.moveDown = function(dir){
+        this.moveDown = function(){
             this.body.velocity.y = _speed;
         }
-        this.moveLeft = function(dir){
+        this.moveLeft = function(){
             this.body.velocity.x = - _speed;
         }
-        this.moveRight = function(dir){
+        this.moveRight = function(){
             this.body.velocity.x = _speed;
         }
         this.stopUp = function(){
@@ -53,6 +53,13 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
             }
         }
 
+
+        this.hurt = function(objet){
+            console.log(_pv);
+            console.log(objet);
+            _pv += objet.getPvMod();
+            console.log(_pv);
+        }
     }//END CONSTRUCTOR
 
 }

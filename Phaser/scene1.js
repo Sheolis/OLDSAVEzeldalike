@@ -10,20 +10,25 @@ init(){
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PRELOAD
 preload(){
     this.load.image("square","_assets/47x48.png");
+    this.load.image("bigSquare","_assets/169x195.png");
 }
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CREATE
 create(){
-  this._joueur = new Entitee(this, 100, 100, 10, 10, 200, 42, "square");
+  this.joueur = new Entitee(this, 100, 100, 100, 10, 200, 42, "square");
+  this.hammer = new Objet("Hammer", 12, 12, 12, 12, 0, -10, 0, 10, "empty", "empty");
   //this._joueur.enableBody(false, 100, 100, false, false);
-  this.input.keyboard.on('keydown-Z', this._joueur.moveUp, this._joueur);
-  this.input.keyboard.on('keyup-Z', this._joueur.stopUp, this._joueur);
-  this.input.keyboard.on('keydown-S', this._joueur.moveDown, this._joueur);
-  this.input.keyboard.on('keyup-S', this._joueur.stopDown, this._joueur);
-  this.input.keyboard.on('keydown-Q', this._joueur.moveLeft, this._joueur);
-  this.input.keyboard.on('keyup-Q', this._joueur.stopLeft, this._joueur);
-  this.input.keyboard.on('keydown-D', this._joueur.moveRight, this._joueur);
-  this.input.keyboard.on('keyup-D', this._joueur.stopRight, this._joueur);
+  this.input.keyboard.on('keydown-Z', this.joueur.moveUp, this.joueur);
+  this.input.keyboard.on('keyup-Z', this.joueur.stopUp, this.joueur);
+  this.input.keyboard.on('keydown-S', this.joueur.moveDown, this.joueur);
+  this.input.keyboard.on('keyup-S', this.joueur.stopDown, this.joueur);
+  this.input.keyboard.on('keydown-Q', this.joueur.moveLeft, this.joueur);
+  this.input.keyboard.on('keyup-Q', this.joueur.stopLeft, this.joueur);
+  this.input.keyboard.on('keydown-D', this.joueur.moveRight, this.joueur);
+  this.input.keyboard.on('keyup-D', this.joueur.stopRight, this.joueur);
+
+  this.input.keyboard.on('keydown-P', this.joueur.hurt, this.joueur, this.hammer);
+  this.joueur.hurt(this.hammer);
 }
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> UPDATE
