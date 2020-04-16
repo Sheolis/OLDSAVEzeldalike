@@ -8,9 +8,23 @@ class Boss extends Entitee{
 
         super(scene, x, y, pv, mana, speed, poise, asset);//, animIdle, animMvt, animAction, animDeath)
 
-        this.attaque = function(target){
-            //var spectre = spectres.create( spawn_spot[i_spawn][0], spawn_spot[i_spawn][1], 'spectre').setSize(63,94).setOffset(3,66);
-            //target.hurt(skills);
+        this.preshot = function(){
+            scene.preshotSprite = scene.add.sprite( x, y, _weapon.getAnimZone());
+            scene.preshotSprite.anims.play(_weapon.getAnimZone(), true);
+            scene.preshotSprite.on('animationcomplete', function(){ scene.preshotSprite.destroy(1); }, scene);
+            scene.time.addEvent({
+                delay: _weapon.getLag(),
+                callback: this.attaque(),
+                loop: false
+              });
+        }
+
+        this.attaque = function(){
+            scene.attSprite = scene.add.sprite( x, y, _weapon.getAnimAtt());
+            scene.physics.world.enableBody(scene.attSprite);
+            scene.attSprite.anims.play(_weapon.getAnimAtt(), true);
+            scene.physics.add.overlap(scene.joueur, scene.attSprite, scene.joueur.hurt); // la on a un pb, on lui dit qu'il ne peut frapper que le joueur
+            scene.attSprite.on('animationcomplete', function(){ scene.attSprite.destroy(1); }, scene);
         }
 
         this.getWeapon = function() {return _weapon};

@@ -9,21 +9,21 @@ init(){
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PRELOAD
 preload(){
-    this.load.image("bigSquare","_assets/169x195.png");
+    this.load.image("bigSquare","_assets/196x195.png");
     this.load.spritesheet("sq400x400","_assets/400x400.png",{frameWidth: 400, frameHeight: 400});
-    this.load.spritesheet("att400x400","assets/400x400att.png",{frameWidth: 400, frameHeight: 400});
-    this.load.image("square","_assets/47x48.png");
+    this.load.spritesheet("att400x400","_assets/400x400att.png",{frameWidth: 400, frameHeight: 400});
+    this.load.spritesheet("square","_assets/47x48.png",{frameWidth: 47, frameHeight: 48});
 }
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CREATE
 create(){
 
 
-  this.hammer = new Objet("Hammer", 12, 12, 12, 12, 0, -10, 0, 10, "empty", "empty");
+  this.hammer = new Objet("Hammer", 12, 12, 12, 0, 10000, -10, 0, 0, 10, "preshot", "att");
   this.joueur = new Entitee(this, 100, 100, 100, 10, 200, 42, "square");
   this.joueur.setDepth(5);
 
-  //this.timer_test = this.time.addEvent({ delay: 1000, callback: this.joueur.hurt, loop: true });
+
 
   //INPUTS JOUEUR
   this.input.keyboard.on('keydown-Z', this.joueur.moveUp, this.joueur);
@@ -38,25 +38,31 @@ create(){
 
 
   //BOSS
-  this.boss = new Boss( this, 400, 400, 400, 10, 200, 42, "sq400x400", [this.hammer]);
+  this.boss = new Boss( this, 400, 400, 400, 10, 200, 42, "bigSquare", [this.hammer]);
   this.physics.add.overlap(this.joueur, this.boss , this.joueur.hurt);
-  /*this.anims.create({
-  		key:'att',
-  		frames: this.anims.generateFrameNumbers('att400x400', {start: 0, end: 5}),
+  this.anims.create({
+  		key:"att",
+  		frames: this.anims.generateFrameNumbers("att400x400", {start: 0, end: 5}),
   		frameRate: 6,
   		repeat: 0
   	});
   this.anims.create({
-  		key:'preshot',
-  		frames: this.anims.generateFrameNumbers('sq400x400', {start: 0, end: 0}),
+  		key:"preshot",
+  		frames: this.anims.generateFrameNumbers("sq400x400", {start: 0, end: 0}),
   		frameRate: 1,
   		repeat: 0
-  	});*/
+  	});
+
+  this.timer_test = this.time.addEvent({
+      delay: 5000,
+      callback: this.boss.preshot,
+      callbackScope: this.boss,
+      loop: true
+    });
 }
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> UPDATE
 update(){
-
 }//END UPDATE
 
 

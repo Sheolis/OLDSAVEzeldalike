@@ -1,5 +1,5 @@
 class Objet {
-    constructor(name, price, range, cd, ammo, lag, pvMod, manaMod, poiseMod, speedMod, animAtt, animZone){
+    constructor(name, price, range, cd, ammo, lag, pvMod, manaMod, poiseMod, speedMod, animZone, animAtt){
         var _name = name;
 	      var _price = price;
 	      var _range = range;
@@ -11,8 +11,8 @@ class Objet {
 	      var _manaMod = manaMod;
 	      var _poiseMod = poiseMod;
 	      var _speedMod = speedMod;
+        var _animZone = animZone;
 	      var _animAtt = animAtt;
-	      var _animZone = animZone;
 
         this.getName= function(){ return _name};
         this.getPrice= function(){ return _price};
@@ -20,6 +20,7 @@ class Objet {
         this.getCooldown= function(){ return _cooldown};
         this.getAmmo= function(){return _ammo};
         this.getDirection = function(){return _direction};
+        this.getLag = function(){return _lag};
         this.getPvMod = function(){return _pvMod};
         this.getManaMod = function(){return _manaMod};
         this.getPoiseMod = function(){return _poiseMod};
