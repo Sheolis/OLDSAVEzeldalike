@@ -57,7 +57,6 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
 
 
         this.hurt = function(entitee, opponent){
-
               console.log(_pv);
               console.log(opponent.getWeapon().getName());
               _pv += opponent.getWeapon().getPvMod();

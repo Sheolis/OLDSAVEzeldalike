@@ -19,7 +19,7 @@ preload(){
 create(){
 
 
-  this.hammer = new Objet("Hammer", 12, 12, 12, 0, 10000, -10, 0, 0, 10, "preshot", "att");
+  this.hammer = new Objet("Hammer", 12, 12, 12, 0, 1000, -10, 0, 0, 10, "preshot", "att400x400", "att");
   this.joueur = new Entitee(this, 100, 100, 100, 10, 200, 42, "square");
   this.joueur.setDepth(5);
 
@@ -43,7 +43,7 @@ create(){
   this.anims.create({
   		key:"att",
   		frames: this.anims.generateFrameNumbers("att400x400", {start: 0, end: 5}),
-  		frameRate: 6,
+  		frameRate: 12,
   		repeat: 0
   	});
   this.anims.create({

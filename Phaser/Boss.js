@@ -14,20 +14,22 @@ class Boss extends Entitee{
             scene.preshotSprite.on('animationcomplete', function(){ scene.preshotSprite.destroy(1); }, scene);
             scene.time.addEvent({
                 delay: _weapon.getLag(),
-                callback: this.attaque(),
+                callback: this.attaque,
                 loop: false
               });
         }
-
         this.attaque = function(){
-            scene.attSprite = scene.add.sprite( x, y, _weapon.getAnimAtt());
+            scene.attSprite = scene.add.sprite( x, y, _weapon.getSpriteAtt());
             scene.physics.world.enableBody(scene.attSprite);
             scene.attSprite.anims.play(_weapon.getAnimAtt(), true);
-            scene.physics.add.overlap(scene.joueur, scene.attSprite, scene.joueur.hurt); // la on a un pb, on lui dit qu'il ne peut frapper que le joueur
+            scene.physics.add.overlap(scene.joueur, scene.attSprite, scene.joueur.hurt(scene.joueur, scene.boss)); // la on a un pb, on lui dit qu'il ne peut frapper que le joueur
             scene.attSprite.on('animationcomplete', function(){ scene.attSprite.destroy(1); }, scene);
         }
 
         this.getWeapon = function() {return _weapon};
 
+        this.move = function() {
+
+        }
     }//END CONSTRUCTOR
 }//END BOSS
