@@ -39,7 +39,7 @@ create(){
 
   //BOSS
   this.boss = new Boss( this, 400, 400, 400, 10, 200, 42, "bigSquare", [this.hammer]);
-  this.physics.add.overlap(this.joueur, this.boss , this.joueur.hurt);
+  //this.physics.add.overlap(this.joueur, this.boss , this.joueur.hurt);
   this.anims.create({
   		key:"att",
   		frames: this.anims.generateFrameNumbers("att400x400", {start: 0, end: 5}),
@@ -54,7 +54,7 @@ create(){
   	});
 
   this.timer_test = this.time.addEvent({
-      delay: 5000,
+      delay: 2000,
       callback: this.boss.preshot,
       callbackScope: this.boss,
       loop: true
