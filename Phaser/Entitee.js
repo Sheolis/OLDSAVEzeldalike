@@ -9,6 +9,8 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
         var _poise = poise;
         var _asset = asset;
         var _invincibility = false;
+        var _canAct = true;
+
         var _orientation;
         /*
         var _animIdle = animIdle;
@@ -62,6 +64,8 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
         }
 
         this.getOrientation = function(){return _orientation};
+        this.getCanAct = function(){return _canAct};
+        this.setCanAct = function(statue){ _canAct = statue;}
 
         this.hurt = function(entitee, opponent){
               if(!_invincibility){

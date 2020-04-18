@@ -12,7 +12,7 @@ class Boss extends Entitee{
         super(scene, x, y, pv, mana, speed, poise, asset);//, animIdle, animMvt, animAction, animDeath)
 
         this.hitPoint = function(){//determine where do the boss hit;
-            if( this.getOrientation() == "up"){console.log("hi"); _hitX = this.body.center.x; _hitY= this.body.center.y - _weapon.getRange()}
+            if( this.getOrientation() == "up"){ _hitX = this.body.center.x; _hitY= this.body.center.y - _weapon.getRange()}
             if( this.getOrientation() == "right"){_hitX = this.body.center.x + _weapon.getRange(); _hitY= this.body.center.y }
             if( this.getOrientation() == "down"){_hitX = this.body.center.x; _hitY= this.body.center.y + _weapon.getRange()}
             if( this.getOrientation() == "left"){_hitX = this.body.center.x - _weapon.getRange(); _hitY= this.body.center.y}
@@ -20,10 +20,12 @@ class Boss extends Entitee{
 
         this.preshot = function(){
             this.hitPoint();
-            scene.preshotSprite = scene.add.sprite( _hitX, _hitY, _weapon.getAnimZone());
-            scene.preshotSprite.setAlpha(0.5);
-            scene.preshotSprite.anims.play(_weapon.getAnimZone(), true);
-            scene.preshotSprite.on('animationcomplete', function(){ scene.preshotSprite.destroy(1); }, scene);
+            this.preshotSprite = new AttSprite(scene, _hitX, _hitY, _weapon.getAnimZone(), _weapon);
+            this.preshotSprite.setAlpha(0.5);
+            this.preshotSprite.setDepth(4);
+            scene.add.existing(this);
+            this.preshotSprite.anims.play(_weapon.getAnimZone(), true);
+            this.preshotSprite.on('animationcomplete', function(){ this.preshotSprite.destroy(scene); }, this);
             scene.time.addEvent({
                 delay: _weapon.getLag(),
                 callback: this.attaque,
@@ -33,12 +35,13 @@ class Boss extends Entitee{
         }
 
         this.attaque = function(){
-            scene.attSprite =  new AttSprite(scene, _hitX, _hitY, _weapon.getSpriteAtt(), _weapon);
-
-            scene.physics.world.enableBody(scene.attSprite);
-            scene.attSprite.anims.play(_weapon.getAnimAtt(), true);
-            scene.physics.add.overlap(scene.joueur, scene.attSprite, scene.joueur.hurt); // la on a un pb, on lui dit qu'il ne peut frapper que le joueur
-            scene.attSprite.on('animationcomplete', function(){ scene.attSprite.destroy(scene); }, scene);
+            this.attSprite =  new AttSprite(scene, _hitX, _hitY, _weapon.getSpriteAtt(), _weapon);
+            this.attSprite.setDepth(6);
+            scene.physics.world.enableBody(this.attSprite);
+            this.attSprite.orientate(this.getOrientation());
+            this.attSprite.anims.play(_weapon.getAnimAtt(), true);
+            scene.physics.add.overlap(scene.joueur, this.attSprite, scene.joueur.hurt); // la on a un pb, on lui dit qu'il ne peut frapper que le joueur
+            this.attSprite.on('animationcomplete', function(){ this.attSprite.destroy(scene); }, this);
         }
 
         this.getWeapon = function() {return _weapon};
@@ -52,10 +55,9 @@ class Boss extends Entitee{
             var pbD = (25 / _moveLimit) * (y - this.body.center.y) + 25;
             //pbl dir = left
             var pbL = (25 / _moveLimit) * (this.body.center.x - x) + 25;
-            //console.log(this.body.center.y - y, x - this.body.center.x, y - this.body.center.y, this.body.center.x - x);
-            //console.log(pbU, pbR, pbD, pbL);
+
             var dir = Phaser.Math.RND.frac()*100;
-            //console.log(dir);
+
             if (0<= dir && dir < pbU){this.moveUp()}
             if (pbU<= dir && dir < pbU+pbR){this.moveRight()}
             if (pbU+pbR<= dir && dir < pbU+pbR+pbD){this.moveDown()}
