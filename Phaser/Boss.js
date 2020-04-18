@@ -4,31 +4,40 @@ class Boss extends Entitee{
         var _skills = skills; // on va n'en utiliser qu'un pour le moment
         var _weapon = _skills[0];
         var _moveLimit = 150;// distance maximum accessible par le boss dans toutes les directions
+        var _hitX ;
+        var _hitY ;
   	    //mortVictoire()
         //amelioration()
 
         super(scene, x, y, pv, mana, speed, poise, asset);//, animIdle, animMvt, animAction, animDeath)
 
+        this.hitPoint = function(){//determine where do the boss hit;
+            if( this.getOrientation() == "up"){console.log("hi"); _hitX = this.body.center.x; _hitY= this.body.center.y - _weapon.getRange()}
+            if( this.getOrientation() == "right"){_hitX = this.body.center.x + _weapon.getRange(); _hitY= this.body.center.y }
+            if( this.getOrientation() == "down"){_hitX = this.body.center.x; _hitY= this.body.center.y + _weapon.getRange()}
+            if( this.getOrientation() == "left"){_hitX = this.body.center.x - _weapon.getRange(); _hitY= this.body.center.y}
+        }
+
         this.preshot = function(){
-            scene.preshotSprite = scene.add.sprite( this.body.center.x, this.body.center.y, _weapon.getAnimZone());
+            this.hitPoint();
+            scene.preshotSprite = scene.add.sprite( _hitX, _hitY, _weapon.getAnimZone());
             scene.preshotSprite.setAlpha(0.5);
             scene.preshotSprite.anims.play(_weapon.getAnimZone(), true);
             scene.preshotSprite.on('animationcomplete', function(){ scene.preshotSprite.destroy(1); }, scene);
             scene.time.addEvent({
                 delay: _weapon.getLag(),
                 callback: this.attaque,
+                callbackScope: this,
                 loop: false
               });
         }
 
         this.attaque = function(){
-            scene.attSprite =  new AttSprite(scene, x, y, _weapon.getSpriteAtt(), _weapon);
+            scene.attSprite =  new AttSprite(scene, _hitX, _hitY, _weapon.getSpriteAtt(), _weapon);
 
             scene.physics.world.enableBody(scene.attSprite);
             scene.attSprite.anims.play(_weapon.getAnimAtt(), true);
             scene.physics.add.overlap(scene.joueur, scene.attSprite, scene.joueur.hurt); // la on a un pb, on lui dit qu'il ne peut frapper que le joueur
-
-
             scene.attSprite.on('animationcomplete', function(){ scene.attSprite.destroy(scene); }, scene);
         }
 
@@ -57,12 +66,13 @@ class Boss extends Entitee{
                 callbackScope: this,
                 loop: false
               });
+
         }
 
         this.stop = function(){
-
             this.body.velocity.y = 0;
             this.body.velocity.x = 0;
+            this.preshot();
         }
     }//END CONSTRUCTOR
 }//END BOSS

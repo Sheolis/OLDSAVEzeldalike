@@ -19,7 +19,7 @@ preload(){
 create(){
   //randGenerator = new RandomDataGenerator();
 
-  this.hammer = new Objet("Hammer", 12, 12, 12, 0, 1000, -10, 0, 0, 10, "preshot", "att400x400", "att");
+  this.hammer = new Objet("Hammer", 12, 103, 12, 0, 1000, -10, 0, 0, 10, "preshot", "att400x400", "att");
   this.joueur = new Entitee(this, 100, 100, 100, 10, 200, 42, "square");
   this.joueur.setDepth(5);
 
@@ -39,6 +39,7 @@ create(){
 
   //BOSS
   this.boss = new Boss( this, 400, 300, 400, 10, 200, 42, "bigSquare", [this.hammer]);
+  this.boss.setDepth(4);
   //this.physics.add.overlap(this.joueur, this.boss , this.joueur.hurt);
   this.anims.create({
   		key:"att",
@@ -53,14 +54,9 @@ create(){
   		repeat: 0
   	});
 
-  this.timer_test_att = this.time.addEvent({
-      delay: 2000,
-      callback: this.boss.preshot,
-      callbackScope: this.boss,
-      loop: true
-    });
+
   this.timer_test_move = this.time.addEvent({
-      delay: 2000,
+      delay: 3000,
       callback: this.boss.move,
       callbackScope: this.boss,
       loop: true

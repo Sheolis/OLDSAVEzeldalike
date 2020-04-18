@@ -9,6 +9,7 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
         var _poise = poise;
         var _asset = asset;
         var _invincibility = false;
+        var _orientation;
         /*
         var _animIdle = animIdle;
         var _animMvt = animMvt;
@@ -25,15 +26,19 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
     //Public
         this.moveUp = function(){
               this.body.velocity.y = - _speed;
+              _orientation = "up";
         }
         this.moveDown = function(){
             this.body.velocity.y = _speed;
+            _orientation = "down";
         }
         this.moveLeft = function(){
             this.body.velocity.x = - _speed;
+            _orientation = "left";
         }
         this.moveRight = function(){
             this.body.velocity.x = _speed;
+            _orientation = "right";
         }
         this.stopUp = function(){
             if(this.body.velocity.y == - _speed){
@@ -56,6 +61,7 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
             }
         }
 
+        this.getOrientation = function(){return _orientation};
 
         this.hurt = function(entitee, opponent){
               if(!_invincibility){
@@ -65,15 +71,6 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
                   _invincibility = true;
                   scene.time.addEvent({delay: 500, callback: function(){_invincibility = false}, loop: false});
               }
-        }
-
-        this.shortInvincibility = function(){ // avoid taking chain damages
-              scene.time.addEvent({
-                    delay: 100,
-                    callback: function(){
-
-                    }
-              })
         }
     }//END CONSTRUCTOR
 }//END ENTITEE
