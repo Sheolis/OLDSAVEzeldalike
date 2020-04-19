@@ -1,24 +1,34 @@
 class Cursor extends Phaser.Physics.Arcade.Sprite{
     constructor(scene, x, y, asset, movementRange){
 
+        var _x = x;
+        var _y = y;
+
+
         super(scene, x, y, asset);
         scene.add.existing(this);
+        this.setDepth(11);
+        this.setVisible(false);
 
-        /*this.cursor.moveUp = function(){
-          this.setPosition(this.getCenter("x"), this.getCenter("y") - movementRange);
+        this.moveUp = function(){
+            _y = _y - movementRange;
+            this.setPosition(_x, _y);
         }
-        this.cursor.moveDown = function(){
-          this.body.velocity.y = _speed;
-          _orientation = "down";
+        this.moveDown = function(){
+            _y = _y + movementRange;
+            this.setPosition(_x, _y);
         }
-        this.cursor.moveLeft = function(){
-          this.body.velocity.x = - _speed;
-          _orientation = "left";
+        this.moveLeft = function(){
+            _x = _x - movementRange
+            this.setPosition(_x, _y);
         }
-        this.cursor.moveRight = function(){
-          this.body.velocity.x = _speed;
-          _orientation = "right";
-        }*/
+        this.moveRight = function(){
+            _x = _x + movementRange
+            this.setPosition(_x, _y);
+        }
+
+
+        this.bounds = function(x, y)
 
 
     }//END CONSTRUCTOR

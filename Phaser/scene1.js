@@ -23,12 +23,14 @@ create(){
   this.menuMode = false;
 
   this.bag = new Inventory(this, 100, "inventory", [this.hammer, this.spear]);
-  this.bag.setDepth(10);
+
   this.hammer = new Objet("Hammer", 12, 300, 12, 0, 1000, -10, 0, 0, 10, "preshot", "att400x400", "att");
   this.spear = new Objet("Spear", 12, 103, 12, 0, 1000, -10, 0, 0, 10, "preshot", "att400x50", "spearAtt");
   this.joueur = new Joueur(this, 100, 100, 100, 10, 200, 42, "square", [this.hammer]);
   this.joueur.setDepth(5);
 
+
+  this.cursor = new Cursor(this, 140.57, 323.541, "cursorInventory",100);
 
 
   //INPUTS JOUEUR
@@ -45,13 +47,13 @@ create(){
       },
       this
   );
-  this.input.keyboard.on('keydown-Z', function(){if(!this.menuMode){this.joueur.moveUp()}}, this);
+  this.input.keyboard.on('keydown-Z', function(){ if(!this.menuMode) {this.joueur.moveUp();} else{this.cursor.moveUp();}}, this);
   this.input.keyboard.on('keyup-Z', this.joueur.stopUp, this.joueur);
-  this.input.keyboard.on('keydown-S', function(){if(!this.menuMode){this.joueur.moveDown()}}, this);
+  this.input.keyboard.on('keydown-S', function(){if(!this.menuMode){this.joueur.moveDown();} else{this.cursor.moveDown();}}, this);
   this.input.keyboard.on('keyup-S', this.joueur.stopDown, this.joueur);
-  this.input.keyboard.on('keydown-Q', function(){if(!this.menuMode){this.joueur.moveLeft()}else{}}, this);
+  this.input.keyboard.on('keydown-Q', function(){if(!this.menuMode){this.joueur.moveLeft();} else{this.cursor.moveLeft();}}, this);
   this.input.keyboard.on('keyup-Q', this.joueur.stopLeft, this.joueur);
-  this.input.keyboard.on('keydown-D', function(){if(!this.menuMode){this.joueur.moveRight()}}, this);
+  this.input.keyboard.on('keydown-D', function(){if(!this.menuMode){this.joueur.moveRight();} else{this.cursor.moveRight();}}, this);
   this.input.keyboard.on('keyup-D', this.joueur.stopRight, this.joueur);
   this.input.keyboard.on('keydown-SPACE', this.joueur.attaque, this.joueur);
 
@@ -59,7 +61,6 @@ create(){
   //BOSS
   this.boss = new Boss( this, 400, 300, 400, 10, 200, 42, "bigSquare", [this.hammer]);
   this.boss.setDepth(4);
-  this.physics.add.collider(this.joueur,this.boss);
   //this.physics.add.overlap(this.joueur, this.boss , this.joueur.hurt);
   this.anims.create({
   		key:"att",

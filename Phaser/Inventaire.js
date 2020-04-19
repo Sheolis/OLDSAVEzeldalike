@@ -7,17 +7,18 @@ class Inventory extends Phaser.Physics.Arcade.Sprite{
           super(scene, 400, 300, appareance);
           scene.add.existing(this);
           this.setVisible(false);
+          this.setDepth(10);
 
           this.open = function(){
               this.setVisible(true);
-              scene.cursor = new Cursor( scene, 140.57, 323.541, "cursorInventory",100);
-              scene.cursor.setDepth(11);
+              scene.cursor.setVisible(true);
+
 
           }
 
           this.close = function(){
               this.setVisible(false);
-              scene.cursor.destroy(scene);
+              scene.cursor.setVisible(false);
           }
 
 
