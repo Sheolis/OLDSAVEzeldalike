@@ -12,6 +12,7 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
         var _canAct = true;
 
         var _orientation;
+
         /*
         var _animIdle = animIdle;
         var _animMvt = animMvt;
@@ -28,19 +29,19 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
     //Public
         this.moveUp = function(){
               this.body.velocity.y = - _speed;
-              _orientation = "up";
+              _orientation = 'up';
         }
         this.moveDown = function(){
             this.body.velocity.y = _speed;
-            _orientation = "down";
+            _orientation = 'down';
         }
         this.moveLeft = function(){
             this.body.velocity.x = - _speed;
-            _orientation = "left";
+            _orientation = 'left';
         }
         this.moveRight = function(){
             this.body.velocity.x = _speed;
-            _orientation = "right";
+            _orientation = 'right';
         }
         this.stopUp = function(){
             if(this.body.velocity.y == - _speed){
@@ -63,9 +64,19 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
             }
         }
 
+        this.immobilize = function(length){
+            //var vX = this.body.velocity.x;
+            //var vY = this.body.velocity.y;
+            this.body.velocity.x = 0;
+            this.body.velocity.y = 0;
+            //scene.time.addEvent({delay: length, callback: function(){this.body.velocity.x = vX; this.body.velocity.y = vY}, callbackScope: this, loop: false})
+        }
+
         this.getOrientation = function(){return _orientation};
         this.getCanAct = function(){return _canAct};
-        this.setCanAct = function(statue){ _canAct = statue;}
+        this.setCanAct = function(statue){ _canAct = statue;};
+        this.setSpeed = function(speed){ _speed = speed};
+        this.getSpeed = function(){ return _speed};
 
         this.hurt = function(entitee, opponent){
               if(!_invincibility){
@@ -76,5 +87,7 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
                   scene.time.addEvent({delay: 500, callback: function(){_invincibility = false}, loop: false});
               }
         }
+
+
     }//END CONSTRUCTOR
 }//END ENTITEE

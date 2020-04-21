@@ -1,8 +1,8 @@
 class Joueur extends Entitee{
-    constructor(scene, x, y, pv, mana, speed, poise, asset, inventory){
+    constructor(scene, x, y, pv, mana, speed, poise, asset, stuff){
 
-              var _inventory = inventory; // tableau d'objets
-              var _weapon = _inventory[0];
+              var _stuff = stuff; // tableau d'objets
+              var _weapon = _stuff[0];
               var _hitX ;
               var _hitY ;
         	    //mortVictoire()
@@ -11,10 +11,10 @@ class Joueur extends Entitee{
               super(scene, x, y, pv, mana, speed, poise, asset);//, animIdle, animMvt, animAction, animDeath)
 
               this.hitPoint = function(){//determine where do the boss hit;
-                  if( this.getOrientation() == "up"){_hitX = this.body.center.x; _hitY= this.body.center.y - _weapon.getRange()}
-                  if( this.getOrientation() == "right"){_hitX = this.body.center.x + _weapon.getRange(); _hitY= this.body.center.y }
-                  if( this.getOrientation() == "down"){_hitX = this.body.center.x; _hitY= this.body.center.y + _weapon.getRange()}
-                  if( this.getOrientation() == "left"){_hitX = this.body.center.x - _weapon.getRange(); _hitY= this.body.center.y}
+                  if( this.getOrientation() == 'up'){_hitX = this.body.center.x; _hitY= this.body.center.y - _weapon.getRange()}
+                  if( this.getOrientation() == 'right'){_hitX = this.body.center.x + _weapon.getRange(); _hitY= this.body.center.y }
+                  if( this.getOrientation() == 'down'){_hitX = this.body.center.x; _hitY= this.body.center.y + _weapon.getRange()}
+                  if( this.getOrientation() == 'left'){_hitX = this.body.center.x - _weapon.getRange(); _hitY= this.body.center.y}
               }
 
               this.attaque = function(){
@@ -36,7 +36,15 @@ class Joueur extends Entitee{
                   scene.time.addEvent({delay: length, callback: function(){this.setCanAct(true);}, callbackScope: this, loop: false})
               }
 
+              this.dash = function(){
+                  //this.setSpeed(this.getSpeed() + 500);
+                  //scene.time.addEvent({delay: 500, callback: function(){this.setSpeed(this.getSpeed() - 500);}, callbackScope: this, loop: false});
+              }
               this.getWeapon = function() {return _weapon};
+              this.setWeapon = function(weapon) { _weapon = weapon};
+              this.pushStuff = function(weapon) { _stuff.push(weapon)};
+              this.getStuff = function() { return _stuff};
+
 
 
           }//END CONSTRUCTOR

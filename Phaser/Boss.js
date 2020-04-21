@@ -12,10 +12,10 @@ class Boss extends Entitee{
         super(scene, x, y, pv, mana, speed, poise, asset);//, animIdle, animMvt, animAction, animDeath)
 
         this.hitPoint = function(){//determine where do the boss hit;
-            if( this.getOrientation() == "up"){ _hitX = this.body.center.x; _hitY= this.body.center.y - _weapon.getRange()}
-            if( this.getOrientation() == "right"){_hitX = this.body.center.x + _weapon.getRange(); _hitY= this.body.center.y }
-            if( this.getOrientation() == "down"){_hitX = this.body.center.x; _hitY= this.body.center.y + _weapon.getRange()}
-            if( this.getOrientation() == "left"){_hitX = this.body.center.x - _weapon.getRange(); _hitY= this.body.center.y}
+            if( this.getOrientation() == 'up'){ _hitX = this.body.center.x; _hitY= this.body.center.y - _weapon.getRange()}
+            if( this.getOrientation() == 'right'){_hitX = this.body.center.x + _weapon.getRange(); _hitY= this.body.center.y }
+            if( this.getOrientation() == 'down'){_hitX = this.body.center.x; _hitY= this.body.center.y + _weapon.getRange()}
+            if( this.getOrientation() == 'left'){_hitX = this.body.center.x - _weapon.getRange(); _hitY= this.body.center.y}
         }
 
         this.preshot = function(){
