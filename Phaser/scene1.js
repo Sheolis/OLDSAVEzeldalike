@@ -28,8 +28,8 @@ create(){
   this.spear = new Objet('Spear', 12, 'spear', 103, 12, 0, 1000, -10, 0, 0, 10, 'preshot', 'att400x50', 'spearAtt');
   this.hammer = new Objet('Hammer', 12, 'hammer', 300, 12, 0, 1000, -10, 0, 0, 10, 'preshot', 'att400x400', 'att');
   this.bag = new Inventory(this, 100, 'inventory', [this.hammer, this.spear], 140.57, 223.541, 'cursorInventory', 100, 2, 4, 2, 0, 0 );
-  this.shop = new Boutique(this, 100, 'shop', [this.hammer, this.spear], 541, 223.541, 'cursorInventory', 100, 2, 4, 2, 0, 0);
-  this.joueur = new Joueur(this, 100, 100, 100, 10, 400, 42, 'square', [this.spear]);
+  this.shop = new Boutique(this, 'shop', [this.hammer, this.spear], 541, 223.541, 'cursorInventory', 100, 2, 4, 2, 0, 0);
+  this.joueur = new Joueur(this, 100, 100, 100, 10, 400, 42, 'square', this.spear);
   this.joueur.setDepth(5);
 
 
@@ -69,9 +69,14 @@ create(){
       'keydown-ENTER',
       function(){
           if(this.menuMode){
-              this.bag.select(this.cursor.getPositionX(), this.cursor.getPositionY());
-              this.bag.close();
-              this.menuMode = false;
+              if (this.bag.getIsOpen()){
+                this.bag.select(this.cursor.getPositionX(), this.cursor.getPositionY());
+                this.bag.close();
+                this.menuMode = false;
+              }
+              if (this.shop.getIsOpen()){
+                  this.shop.buy(this.cursor.getPositionX(), this.cursor.getPositionY());
+              }
           }
       },
       this
