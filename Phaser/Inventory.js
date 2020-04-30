@@ -13,5 +13,9 @@ class Inventory extends Menu{
             }
         }
 
+
+
+        this.getMoney = function(){ return _money};
+        this.setMoney = function(amount){ _money = amount};
     }//END CONSTRUCTOR
 }//END CLASS

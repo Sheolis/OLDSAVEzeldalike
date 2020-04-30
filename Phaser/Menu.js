@@ -5,6 +5,7 @@ class Menu extends Phaser.Physics.Arcade.Sprite{
           var _x = xNav;
           var _y = yNav;
           var _Slots = []; //va contenir des trios d'informations à afficher: un element de classe et ses coordonnées dans le menu
+          var _isOpen = false;
 
           super(scene, 400, 300, appareance);
           scene.add.existing(this);
@@ -15,6 +16,7 @@ class Menu extends Phaser.Physics.Arcade.Sprite{
 
 
           this.open = function() {
+              _isOpen = true;
               this.setVisible(true);
               scene.cursor = new Cursor(scene, xNav, yNav, assetCursor, boxSpacing, nbBoxX, nbBoxY, nbColLeft, nbColRight, gap);
               scene.itemSprites = scene.physics.add.group();
@@ -38,9 +40,12 @@ class Menu extends Phaser.Physics.Arcade.Sprite{
               this.setVisible(false);
               scene.cursor.destroy(scene);
               scene.itemSprites.destroy(true);
+              _isOpen = false;
           }
 
+          this.pushItem = function(item) { _items.push(item)};
           this.getSlots = function() { return _Slots};
-
+          this.setIsOpen = function(state){ _isOpen = state};
+          this.getIsOpen = function() { return _isOpen};
     }
 }
