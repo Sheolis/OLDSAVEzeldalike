@@ -54,6 +54,9 @@ preload(){
     this.load.image('wall25', '_assets/INT/WALLS/wall25.png');
     this.load.image('wall26', '_assets/INT/WALLS/wall26.png');
 
+  this.load.image('mobilier', '_assets/INT/mobilier.png');
+    this.load.image('stairs', '_assets/INT/stairs.png');
+    this.load.image('HUD', '_assets/HUD.png');
     this.load.image('ext', '_assets/EXT/dehors.png');
 
 }
@@ -63,8 +66,11 @@ create(){
 
   this.menuMode = false;
 
-  this.add.image(1100,3950,'ext');
+  this.add.image(200,100,'HUD').setScrollFactor(0).setDepth(9);
+  this.add.image(2033,10,'stairs').setDepth(5);
+  this.add.image(1100,3750,'ext');
   this.add.image(1100,950,'INT_sol');
+  this.add.image(1100,950,'mobilier').setDepth(5);
   // WALLS
   this.walls = this.physics.add.staticGroup();
   this.walls.create(51,851,'wall00');
@@ -118,7 +124,7 @@ create(){
   this.hammer = new Objet('Hammer', 12, 'hammer', 300, 12, 0, 1000, -10, 0, 0, 10, 'preshot', 'att400x400', 'att');
   this.bag = new Inventory(this, 100, 'inventory', [this.hammer, this.spear], 140.57, 223.541, 'cursorInventory', 100, 2, 4, 2, 0, 0 ).setScrollFactor(0);
   this.shop = new Boutique(this, 'shop', [this.hammer, this.spear], 541, 223.541, 'cursorInventory', 100, 2, 4, 2, 0, 0).setScrollFactor(0);
-  this.joueur = new Joueur(this, 2062, 100, 100, 10, 400, 42, 'joueur', this.spear, 'joueurIdle', 'joueurMvt', 'joueurAction' ).setSize(55,35).setOffset(0,60);;
+  this.joueur = new Joueur(this, 2062, 70, 100, 10, 400, 42, 'joueur', this.spear, 'joueurIdle', 'joueurMvt', 'joueurAction' ).setSize(55,35).setOffset(0,60);;
   this.joueur.setDepth(5);
   this.cameras.main.startFollow(this.joueur, true, 0.9, 0.9);
 
