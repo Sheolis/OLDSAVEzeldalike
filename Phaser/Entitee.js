@@ -1,5 +1,5 @@
 class Entitee extends Phaser.Physics.Arcade.Sprite{
-    constructor(scene, x, y, pv, mana, speed, poise, asset,/*, animIdle, animMvt, animAction, animDeath*/){
+    constructor(scene, x, y, pv, mana, speed, poise, asset, animIdle, animMvt, animAction){
     //Private
         var _pv = pv;
         var _pvMax = pv;
@@ -28,43 +28,53 @@ class Entitee extends Phaser.Physics.Arcade.Sprite{
 
     //Public
         this.moveUp = function(){
+              this.anims.play(animMvt, true);
               this.body.velocity.y = - _speed;
               _orientation = 'up';
         }
         this.moveDown = function(){
+            this.anims.play(animMvt, true);
             this.body.velocity.y = _speed;
             _orientation = 'down';
         }
         this.moveLeft = function(){
+            this.anims.play(animMvt, true);
             this.body.velocity.x = - _speed;
             _orientation = 'left';
         }
         this.moveRight = function(){
+            this.anims.play(animMvt, true);
             this.body.velocity.x = _speed;
             _orientation = 'right';
         }
         this.stopUp = function(){
+
             if(this.body.velocity.y == - _speed){
+                this.anims.play(animIdle, true);
                 this.body.velocity.y = this.body.velocity.y + _speed;
             }
         }
         this.stopDown = function(){
             if(this.body.velocity.y ==  _speed){
+                this.anims.play(animIdle, true);
                 this.body.velocity.y = this.body.velocity.y - _speed;
             }
         }
         this.stopLeft= function(){
             if(this.body.velocity.x == - _speed){
+                this.anims.play(animIdle, true);
                 this.body.velocity.x = this.body.velocity.x + _speed;
             }
         }
         this.stopRight = function(){
             if(this.body.velocity.x == _speed){
+                this.anims.play(animIdle, true);
                 this.body.velocity.x = this.body.velocity.x - _speed;
             }
         }
 
         this.immobilize = function(length){
+            this.anims.play(animIdle, true);
             //var vX = this.body.velocity.x;
             //var vY = this.body.velocity.y;
             this.body.velocity.x = 0;

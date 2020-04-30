@@ -1,5 +1,5 @@
 class Joueur extends Entitee{
-    constructor(scene, x, y, pv, mana, speed, poise, asset, weapon){
+    constructor(scene, x, y, pv, mana, speed, poise, asset, weapon, animIdle, animMvt, animAction){
 
  // tableau d'objets
               var _weapon = weapon;
@@ -8,7 +8,7 @@ class Joueur extends Entitee{
         	    //mortVictoire()
               //amelioration()
 
-              super(scene, x, y, pv, mana, speed, poise, asset);//, animIdle, animMvt, animAction, animDeath)
+              super(scene, x, y, pv, mana, speed, poise, asset, animIdle, animMvt, animAction);//, animIdle, animMvt, animAction, animDeath)
 
               this.hitPoint = function(){//determine where do the boss hit;
                   if( this.getOrientation() == 'up'){_hitX = this.body.center.x; _hitY= this.body.center.y - _weapon.getRange()}
@@ -19,6 +19,7 @@ class Joueur extends Entitee{
 
               this.attaque = function(){
                   if(this.getCanAct()){
+                    this.anims.play(animAction, true);
                     this.hitPoint();
                     this.attSprite =  new AttSprite(scene, _hitX, _hitY, _weapon.getSpriteAtt(), _weapon);
                     this.attSprite.setDepth(8);

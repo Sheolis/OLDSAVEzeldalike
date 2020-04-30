@@ -27,7 +27,7 @@ class Menu extends Phaser.Physics.Arcade.Sprite{
                       if (n<length){
                           var xTemp = xNav + j * boxSpacing ;
                           var yTemp = yNav + i * boxSpacing ;
-                          scene.itemSprites.create( xTemp, yTemp, _items[n].getMenuAsset()).setDepth(11);
+                          scene.itemSprites.create( xTemp, yTemp, _items[n].getMenuAsset()).setDepth(11).setScrollFactor(0);
                           _Slots.push([_items[n], xTemp, yTemp ]);
                           n += 1;
                       }

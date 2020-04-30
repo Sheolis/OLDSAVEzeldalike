@@ -12,7 +12,7 @@ class Cursor extends Phaser.Physics.Arcade.Sprite{
         var _xRGap = x + (nbBoxY - nbColRight + 1) * boxSpacing;
 
         super(scene, x, y, asset);
-        scene.add.existing(this);
+        scene.add.existing(this).setScrollFactor(0);
         this.setDepth(12);
 
         this.moveUp = function(){

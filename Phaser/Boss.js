@@ -1,5 +1,5 @@
 class Boss extends Entitee{
-    constructor(scene, x, y, pv, mana, speed, poise, asset, skills){ //, animIdle, animMvt, animAction, animDeath
+    constructor(scene, x, y, pv, mana, speed, poise, asset, skills, animIdle, animMvt, animAction){ // animDeath
 
         var _skills = skills; // on va n'en utiliser qu'un pour le moment
         var _weapon = _skills[0];
@@ -9,7 +9,7 @@ class Boss extends Entitee{
   	    //mortVictoire()
         //amelioration()
 
-        super(scene, x, y, pv, mana, speed, poise, asset);//, animIdle, animMvt, animAction, animDeath)
+        super(scene, x, y, pv, mana, speed, poise, asset, animIdle, animMvt, animAction);//, animIdle, animMvt, animAction, animDeath)
 
         this.hitPoint = function(){//determine where do the boss hit;
             if( this.getOrientation() == 'up'){ _hitX = this.body.center.x; _hitY= this.body.center.y - _weapon.getRange()}
@@ -35,6 +35,7 @@ class Boss extends Entitee{
         }
 
         this.attaque = function(){
+            this.anims.play(animAction, true);
             this.attSprite =  new AttSprite(scene, _hitX, _hitY, _weapon.getSpriteAtt(), _weapon);
             this.attSprite.setDepth(6);
             scene.physics.world.enableBody(this.attSprite);
@@ -72,6 +73,7 @@ class Boss extends Entitee{
         }
 
         this.stop = function(){
+            this.anims.play(animIdle, true);
             this.body.velocity.y = 0;
             this.body.velocity.x = 0;
             this.preshot();

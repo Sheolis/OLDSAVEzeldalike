@@ -19,6 +19,10 @@ preload(){
     this.load.spritesheet('hammer', '_assets/hammer.png', {frameWidth: 75, frameHeight: 75});
     this.load.spritesheet('spear', '_assets/spear.png', {frameWidth: 75, frameHeight: 75});
     this.load.spritesheet('cursorInventory', '_assets/cursorInventory81x81.png', {frameWidth: 81, frameHeight: 81});
+    this.load.spritesheet('joueur','_assets/Characters/personnage55x98.png',{frameWidth: 55, frameHeight: 98});
+    this.load.spritesheet('bossIdle','_assets/Characters/bossIdle298x274.png',{frameWidth: 298, frameHeight: 274});
+    this.load.spritesheet('bossHit','_assets/Characters/bossHit355x400.png',{frameWidth: 355, frameHeight: 400});
+    this.load.spritesheet('bossWalk','_assets/Characters/bossWalk297x277.png',{frameWidth: 297, frameHeight: 277});
 
     this.load.image('INT_sol', '_assets/INT/INT_sol.png');
 
@@ -50,6 +54,8 @@ preload(){
     this.load.image('wall25', '_assets/INT/WALLS/wall25.png');
     this.load.image('wall26', '_assets/INT/WALLS/wall26.png');
 
+    this.load.image('ext', '_assets/EXT/dehors.png');
+
 }
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CREATE
@@ -57,6 +63,7 @@ create(){
 
   this.menuMode = false;
 
+  this.add.image(1100,3950,'ext');
   this.add.image(1100,950,'INT_sol');
   // WALLS
   this.walls = this.physics.add.staticGroup();
@@ -88,34 +95,35 @@ create(){
   this.walls.create(1550,1650,'wall25');
   this.walls.create(2025,1800,'wall26');
 
+  this.anims.create({
+    key:'joueurMvt',
+    frames: this.anims.generateFrameNumbers('joueur', {start: 0, end: 1}),
+    frameRate: 4,
+    repeat: -1
+  });
+  this.anims.create({
+    key:'joueurIdle',
+    frames: this.anims.generateFrameNumbers('joueur', {start: 2, end: 5}),
+    frameRate: 3,
+    repeat: -1
+  });
+  this.anims.create({
+    key:'joueurAction',
+    frames: this.anims.generateFrameNumbers('joueur', {start: 6, end: 9}),
+    frameRate: 1,
+    repeat: 0
+  });
+
   this.spear = new Objet('Spear', 12, 'spear', 103, 12, 0, 1000, -10, 0, 0, 10, 'preshot', 'att400x50', 'spearAtt');
   this.hammer = new Objet('Hammer', 12, 'hammer', 300, 12, 0, 1000, -10, 0, 0, 10, 'preshot', 'att400x400', 'att');
   this.bag = new Inventory(this, 100, 'inventory', [this.hammer, this.spear], 140.57, 223.541, 'cursorInventory', 100, 2, 4, 2, 0, 0 ).setScrollFactor(0);
   this.shop = new Boutique(this, 'shop', [this.hammer, this.spear], 541, 223.541, 'cursorInventory', 100, 2, 4, 2, 0, 0).setScrollFactor(0);
-  this.joueur = new Joueur(this, 2062, 100, 100, 10, 400, 42, 'square', this.spear);
+  this.joueur = new Joueur(this, 2062, 100, 100, 10, 400, 42, 'joueur', this.spear, 'joueurIdle', 'joueurMvt', 'joueurAction' ).setSize(55,35).setOffset(0,60);;
   this.joueur.setDepth(5);
   this.cameras.main.startFollow(this.joueur, true, 0.9, 0.9);
 
   this.physics.add.collider(this.joueur, this.walls);
 
-  this.anims.create({
-    key:'walkJoueur',
-    frames: this.anims.generateFrameNumbers('att400x400', {start: 0, end: 5}),
-    frameRate: 24,
-    repeat: 0
-  });
-  this.anims.create({
-    key:'idleJoueur',
-    frames: this.anims.generateFrameNumbers('playerFront', {start: 2, end: 5}),
-    frameRate: 3,
-    repeat: -1
-  });
-  this.anims.create({
-    key:'attJoueur',
-    frames: this.anims.generateFrameNumbers('att400x400', {start: 0, end: 5}),
-    frameRate: 24,
-    repeat: 0
-  });
 
 
   //INPUTS JOUEUR
@@ -194,10 +202,29 @@ create(){
   this.keySPACE = this.input.keyboard.on('keydown-SPACE', function(){this.joueur.attaque(), this.joueur.immobilize(300)}, this);
 
   //BOSS
-  this.boss = new Boss( this, 1100, 1400, 400, 10, 200, 42, 'bigSquare', [this.hammer]);
+  this.anims.create({
+    key:'bossMvt',
+    frames: this.anims.generateFrameNumbers('bossWalk', {start: 0, end: 13}),
+    frameRate: 1,
+    repeat: -1
+  });
+  this.anims.create({
+    key:'bossIdle',
+    frames: this.anims.generateFrameNumbers('bossIdle', {start: 0, end: 4}),
+    frameRate: 1,
+    repeat: -1
+  });
+  this.anims.create({
+    key:'bossAction',
+    frames: this.anims.generateFrameNumbers('bossHit', {start: 0, end: 9}),
+    frameRate: 5,
+    repeat: 0
+  });
+
+  this.boss = new Boss( this, 1100, 1400, 400, 10, 200, 42, 'bossIdle', [this.hammer], 'bossIdle','bossMvt', 'bossAction');
   this.boss.setDepth(4);
   this.physics.add.collider(this.boss, this.walls);
-  //this.physics.add.overlap(this.joueur, this.boss , this.joueur.hurt);
+
   this.anims.create({
   		key:'att',
   		frames: this.anims.generateFrameNumbers('att400x400', {start: 0, end: 5}),
@@ -224,12 +251,9 @@ create(){
       loop: true
     });
 
-
-  //this.physics.add.overlap(this.joueur, this.zombies, function(joueur,zombie){ console.log(zombie.)})
 }
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> UPDATE
   update(){
-    this.joueur.update();
   }//END UPDATE
   }//END SCENE
