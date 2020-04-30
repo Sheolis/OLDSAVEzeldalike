@@ -54,35 +54,35 @@ preload(){
 create(){
   this.menuMode = false;
 
-  // WALLS
-  walls = this.physics.add.staticGroup();
-  walls.create(51,851,'wall00');
-  walls.create(1099,-99,'wall01');
-  walls.create(2145,851,'wall02');
-  walls.create(549,99.5,'wall03');
-  walls.create(400,588,'wall04');
-  walls.create(400,588,'wall05');
-  walls.create(400,588,'wall06');
-  walls.create(400,588,'wall07');
-  walls.create(400,588,'wall08');
-  walls.create(400,588,'wall09');
-  walls.create(400,588,'wall10');
-  walls.create(400,588,'wall11');
-  walls.create(400,588,'wall12');
-  walls.create(400,588,'wall13');
-  walls.create(400,588,'wall14');
-  walls.create(400,588,'wall15');
-  walls.create(400,588,'wall16');
-  walls.create(400,588,'wall17');
-  walls.create(400,588,'wall18');
-  walls.create(400,588,'wall19');
-  walls.create(400,588,'wall20');
-  walls.create(400,588,'wall21');
-  walls.create(400,588,'wall22');
-  walls.create(400,588,'wall23');
-  walls.create(400,588,'wall24');
-  walls.create(400,588,'wall25');
-  walls.create(400,588,'wall26');
+  // // WALLS
+  // walls = this.physics.add.staticGroup();
+  // walls.create(51,851,'wall00');
+  // walls.create(1099,-99,'wall01');
+  // walls.create(2145,851,'wall02');
+  // walls.create(549,99.5,'wall03');
+  // walls.create(400,588,'wall04');
+  // walls.create(400,588,'wall05');
+  // walls.create(400,588,'wall06');
+  // walls.create(400,588,'wall07');
+  // walls.create(400,588,'wall08');
+  // walls.create(400,588,'wall09');
+  // walls.create(400,588,'wall10');
+  // walls.create(400,588,'wall11');
+  // walls.create(400,588,'wall12');
+  // walls.create(400,588,'wall13');
+  // walls.create(400,588,'wall14');
+  // walls.create(400,588,'wall15');
+  // walls.create(400,588,'wall16');
+  // walls.create(400,588,'wall17');
+  // walls.create(400,588,'wall18');
+  // walls.create(400,588,'wall19');
+  // walls.create(400,588,'wall20');
+  // walls.create(400,588,'wall21');
+  // walls.create(400,588,'wall22');
+  // walls.create(400,588,'wall23');
+  // walls.create(400,588,'wall24');
+  // walls.create(400,588,'wall25');
+  // walls.create(400,588,'wall26');
 
   this.spear = new Objet('Spear', 12, 'spear', 103, 12, 0, 1000, -10, 0, 0, 10, 'preshot', 'att400x50', 'spearAtt');
   this.hammer = new Objet('Hammer', 12, 'hammer', 300, 12, 0, 1000, -10, 0, 0, 10, 'preshot', 'att400x400', 'att');
