@@ -1,8 +1,8 @@
 class Joueur extends Entitee{
-    constructor(scene, x, y, pv, mana, speed, poise, asset, stuff){
+    constructor(scene, x, y, pv, mana, speed, poise, asset, weapon){
 
-              var _stuff = stuff; // tableau d'objets
-              var _weapon = _stuff[0];
+ // tableau d'objets
+              var _weapon = weapon;
               var _hitX ;
               var _hitY ;
         	    //mortVictoire()
@@ -75,8 +75,7 @@ class Joueur extends Entitee{
               }
               this.getWeapon = function() {return _weapon};
               this.setWeapon = function(weapon) { _weapon = weapon};
-              this.pushStuff = function(weapon) { _stuff.push(weapon)};
-              this.getStuff = function() { return _stuff};
+
 
 
 
