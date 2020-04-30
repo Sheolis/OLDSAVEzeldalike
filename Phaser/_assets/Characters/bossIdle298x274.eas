@@ -1,0 +1,53 @@
+﻿{"frames": [
+
+{
+	"filename": "Boss400x400.ai0000",
+	"frame": {"x":0,"y":0,"w":298,"h":274},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":298,"h":274},
+	"sourceSize": {"w":298,"h":274}
+}
+,{
+	"filename": "Boss400x400.ai0001",
+	"frame": {"x":298,"y":0,"w":298,"h":274},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":298,"h":274},
+	"sourceSize": {"w":298,"h":274}
+}
+,{
+	"filename": "Boss400x400.ai0002",
+	"frame": {"x":596,"y":0,"w":298,"h":274},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":298,"h":274},
+	"sourceSize": {"w":298,"h":274}
+}
+,{
+	"filename": "Boss400x400.ai0003",
+	"frame": {"x":894,"y":0,"w":298,"h":274},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":298,"h":274},
+	"sourceSize": {"w":298,"h":274}
+}
+,{
+	"filename": "Boss400x400.ai0004",
+	"frame": {"x":1192,"y":0,"w":298,"h":274},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":298,"h":274},
+	"sourceSize": {"w":298,"h":274}
+}],
+"meta": {
+	"app": "Adobe Animate",
+	"version": "20.0.0.17400",
+	"Target": "Edge Animate",
+	"Target Version": "4.0",
+	"image": "bossIdle298x274.png",
+	"format": "RGBA8888",
+	"size": {"w":1490,"h":274},
+	"scale": "1"
+}
+}

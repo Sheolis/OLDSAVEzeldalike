@@ -37,8 +37,41 @@ class Joueur extends Entitee{
               }
 
               this.dash = function(){
-                  //this.setSpeed(this.getSpeed() + 500);
-                  //scene.time.addEvent({delay: 500, callback: function(){this.setSpeed(this.getSpeed() - 500);}, callbackScope: this, loop: false});
+                  if(this.body.velocity.y != 0 || this.body.velocity.x != 0){
+                      var pot = 3;
+                      var dir = this.getOrientation();
+                      this.disableMovement();
+                      if(dir == 'up'){this.body.velocity.y = - this.getSpeed() * pot;}
+                      if(dir == 'down'){this.body.velocity.y = this.getSpeed()* pot;}
+                      if(dir == 'left'){this.body.velocity.x = - this.getSpeed() * pot;}
+                      if(dir == 'right'){this.body.velocity.x = this.getSpeed() * pot;}
+                      scene.time.addEvent({delay: 200, callback: function(){this.immobilize(); this.enableMovement();}, callbackScope: this, loop: false});
+
+                  }
+              }
+
+              this.disableMovement = function(){
+                  scene.keyZd.enabled = false;
+                  scene.keyZu.enabled = false;
+                  scene.keySd.enabled = false;
+                  scene.keySu.enabled = false;
+                  scene.keyQd.enabled = false;
+                  scene.keyQu.enabled = false;
+                  scene.keyDu.enabled = false;
+                  scene.keyDd.enabled = false;
+                  scene.keySPACE.enabled = false;
+              }
+
+              this.enableMovement = function(){
+                  scene.keyZd.enabled = true;
+                  scene.keyZu.enabled = true;
+                  scene.keySd.enabled = true;
+                  scene.keySu.enabled = true;
+                  scene.keyQd.enabled = true;
+                  scene.keyQu.enabled = true;
+                  scene.keyDu.enabled = true;
+                  scene.keyDd.enabled = true;
+                  scene.keySPACE.enabled = true;
               }
               this.getWeapon = function() {return _weapon};
               this.setWeapon = function(weapon) { _weapon = weapon};
