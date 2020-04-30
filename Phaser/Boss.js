@@ -3,7 +3,7 @@ class Boss extends Entitee{
 
         var _skills = skills; // on va n'en utiliser qu'un pour le moment
         var _weapon = _skills[0];
-        var _moveLimit = 150;// distance maximum accessible par le boss dans toutes les directions
+        var _moveLimit = 200;// distance maximum accessible par le boss dans toutes les directions
         var _hitX ;
         var _hitY ;
   	    //mortVictoire()
